@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,31 +19,16 @@ namespace DBFinal
             InitializeComponent();
         }
         
-        private static void TestConnection()
-        {
-            using(NpgsqlConnection conn = GetConnection())
-            {
-                if(conn.State == ConnectionState.Open)
-                {
-                    MessageBox.Show("Connected");
-                }
-                else
-                {
-                    MessageBox.Show("Not Connected");
-                }
-            }
-        }
-
-        private static NpgsqlConnection GetConnection()
-        {
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=11111;Database=DB_Final;");
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
             ClientRegister fm = new ClientRegister();
             fm.ShowDialog();
+        }
+
+        private void ClientLogin_Load(object sender, EventArgs e)
+        {
+          
         }
     }
 }

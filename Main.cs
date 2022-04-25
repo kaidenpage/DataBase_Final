@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace DBFinal
 {
     public partial class Main : Form
@@ -17,6 +19,14 @@ namespace DBFinal
             this.Hide();
             ClientLogin fm = new ClientLogin();
             fm.ShowDialog();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            Console.WriteLine("Fetching employees");
+            var qmanager = new QueryManager();
+            qmanager.GetAllEmployees();
+
         }
     }
 }
