@@ -15,7 +15,7 @@ namespace DBFinal
     {
         const string HOST = "localhost:5432";
         const string USER = "postgres";
-        const string PASS = "Youarestrong07!";
+        const string PASS = "11111";
         const string DB = "DB_Final";
         const string connectionString = $"Host={HOST};Username={USER};Password={PASS};Database={DB}";
 
