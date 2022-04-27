@@ -1,89 +1,112 @@
 CREATE TABLE IF NOT EXISTS Address
     (
         AID INTEGER PRIMARY KEY,
-        Street VARCHAR(50),
-        City VARCHAR(30),
-        State VARCHAR(2),
-        Zip NUMERIC(5,0)
+        Street VARCHAR(50) NOT NULL,
+        City VARCHAR(30) NOT NULL,
+        State VARCHAR(2) NOT NULL,
+        Zip NUMERIC(5,0) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS Employee
     (
         EID INTEGER PRIMARY KEY, 
-        Fname VARCHAR(50), 
-        Lname VARCHAR(50), 
-        Email VARCHAR(50), 
-        Phone CHAR(12),
+        Fname VARCHAR(50) NOT NULL, 
+        Lname VARCHAR(50) NOT NULL, 
+        Email VARCHAR(50) NOT NULL, 
+        Phone CHAR(12) NOT NULL,
         Salary INTEGER,
-        Available BOOLEAN,
-        Address INTEGER REFERENCES Address
+        Available BOOLEAN NOT NULL,
+        Address INTEGER REFERENCES Address ON DELETE SET NULL,
+        CHECK (Salary > 0),
+        CONSTRAINT emp_unique UNIQUE (Email, Phone)
     );
 
 CREATE TABLE IF NOT EXISTS Machinery_Operator
     (
-        EID INTEGER REFERENCES Employee,
+        EID INTEGER REFERENCES Employee ON DELETE CASCADE, 
         Certification VARCHAR(50), 
         CONSTRAINT operator_pk PRIMARY KEY (EID,Certification)
     );
 
 CREATE TABLE IF NOT EXISTS Staff
     (
-        EID INTEGER PRIMARY KEY REFERENCES Employee,
-        Job_Title VARCHAR(50)
+        EID INTEGER PRIMARY KEY REFERENCES Employee ON DELETE CASCADE,
+        Job_Title VARCHAR(50) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS Customer
     (
         CID INTEGER PRIMARY KEY,
-        Fname VARCHAR(50),
-        Lname VARCHAR(50),
-        Phone CHAR(12),
-        Email VARCHAR(50),
-        Address INTEGER REFERENCES Address
+        Fname VARCHAR(50) NOT NULL,
+        Lname VARCHAR(50) NOT NULL,
+        Phone CHAR(12) NOT NULL,
+        Email VARCHAR(50) NOT NULL,
+        Address INTEGER REFERENCES Address ON DELETE SET NULL,
+        CONSTRAINT cust_unique UNIQUE (Phone, Email, Address)
     );
 
 CREATE TABLE IF NOT EXISTS Supplier
     (
         Name VARCHAR(100) PRIMARY KEY,
-        Phone CHAR(12),
-        Email VARCHAR(50),
-        Address INTEGER REFERENCES Address
+        Phone CHAR(12) NOT NULL,
+        Email VARCHAR(50) NOT NULL,
+        Address INTEGER REFERENCES Address ON DELETE SET NULL,
+        CONSTRAINT supp_unique UNIQUE (Phone, Email, Address)
     );
 
 CREATE TABLE IF NOT EXISTS Inventory
     (
         Name VARCHAR(20) PRIMARY KEY,
         Quantity INTEGER,
-        Units VARCHAR(50)
+        Units VARCHAR(50) NOT NULL,
+        CHECK (Quantity > 0)
     );
 
 CREATE TABLE IF NOT EXISTS Purchase
     (
         OrderID INTEGER PRIMARY KEY,
-        EID INTEGER REFERENCES Employee,
-        Supplier VARCHAR(100) REFERENCES Supplier,
+        EID INTEGER REFERENCES Employee ON DELETE SET NULL,
+        Supplier VARCHAR(100) REFERENCES Supplier ON DELETE CASCADE,
         Quantity INTEGER,
-        Material VARCHAR(20) REFERENCES Inventory,
-        Price NUMERIC(7,2)  
+        Material VARCHAR(20) REFERENCES Inventory ON DELETE CASCADE,
+        Price NUMERIC(7,2),
+        CHECK (Quantity > 0 AND Price > 0)
     );
+
+--CREATE TRIGGER purchase_log AFTER DELETE ON Purchase EXECUTE PROCEDURE log_row();
+
+--CREATE OR REPLACE FUNCTION log_row RETURNS ... AS  
 
 CREATE TABLE IF NOT EXISTS Project
     (
         PID INTEGER PRIMARY KEY,
-        Start DATE,
-        Deadline DATE,
-        Location INTEGER REFERENCES Address,
+        Start DATE NOT NULL,
+        Deadline DATE NOT NULL,
+        Location INTEGER REFERENCES Address NOT NULL,
         Payment NUMERIC(9,2),
         Budget NUMERIC(9,2),
         NOTES TEXT,
-        Proposed INTEGER REFERENCES Customer 
+        Proposed INTEGER REFERENCES Customer NOT NULL,
+        CHECK (Start <= Deadline AND Payment > 0 AND Budget <= Payment) 
     );
 
 CREATE TABLE IF NOT EXISTS Working
     (
-        PID INTEGER REFERENCES Project,
-        EID INTEGER REFERENCES Employee,
+        PID INTEGER REFERENCES Project ON DELETE CASCADE,
+        EID INTEGER REFERENCES Employee ON DELETE SET NULL,
         CONSTRAINT working_pk PRIMARY KEY (PID,EID)
+    );
+
+CREATE TABLE IF NOT EXISTS EmpLogin
+    (
+        EID INTEGER PRIMARY KEY REFERENCES Employee ON DELETE CASCADE,
+        Pass VARCHAR(20) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS CustLogin
+    (
+        CID INTEGER PRIMARY KEY REFERENCES Customer ON DELETE CASCADE,
+        Pass VARCHAR(20) NOT NULL
     );
 
 \copy Address FROM 'Data - CSV/Address.csv' WITH DELIMITER ',' CSV HEADER;
@@ -105,3 +128,7 @@ CREATE TABLE IF NOT EXISTS Working
 \copy Project FROM 'Data - CSV/Project.csv' WITH DELIMITER ',' CSV HEADER;
 
 \copy Working FROM 'Data - CSV/Working.csv' WITH DELIMITER ',' CSV HEADER;
+
+\copy EmpLogin FROM 'Data - CSV/EmpLogin.csv' WITH DELIMITER ',' CSV HEADER;
+
+\copy CustLogin FROM 'Data - CSV/CustLogin.csv' WITH DELIMITER ',' CSV HEADER;
