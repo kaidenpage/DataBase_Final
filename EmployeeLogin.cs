@@ -39,11 +39,11 @@ namespace DBFinal
             try
             {
                 conn.Open();
-                string sql = @"select * from e_login(:_username,:_password)";
+                string sql = @"select * from e_login(:_usernames,:_passwords)";
                 var cmd = new NpgsqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("_username", textBox1.Text);
-                cmd.Parameters.AddWithValue("_password", textBox2.Text);
+                cmd.Parameters.AddWithValue("_usernames", textBox1.Text);
+                cmd.Parameters.AddWithValue("_passwords", textBox2.Text);
 
                 int result = (int)cmd.ExecuteScalar();
 
