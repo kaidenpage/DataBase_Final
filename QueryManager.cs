@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 
-
 namespace DBFinal
 {
 
@@ -65,33 +64,7 @@ namespace DBFinal
                 conn.Close();
             }
         }
-
-
-        public void Clientlogin()
-        {
-            var conn = GetConnection();
-            ClientLogin fm = new ClientLogin();
-            try
-            {
-                conn.Open();
-                string sql = @"select * from u_login(:_username,_password)";
-                var cmd = new NpgsqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("_username", fm.Textbox.1);
-
-
-                
-                conn.Close();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: "+ ex.Message, "Something went wrong",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                conn.Close();
-            }
-           
-        }
-
+    
     }
 
 }

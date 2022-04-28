@@ -134,19 +134,3 @@ CREATE TABLE IF NOT EXISTS CustLogin
 \copy EmpLogin FROM 'Data - CSV/EmpLogin.csv' WITH DELIMITER ',' CSV HEADER;
 
 \copy CustLogin FROM 'Data - CSV/CustLogin.csv' WITH DELIMITER ',' CSV HEADER;
-
-
-
--- login function
-create function u_login(_username int, _password character varying)
-returns int as
-$$
-begin
-	if(select count(*) from custlogin where cid = _username and pass = _password) > 0 then
-		return 1;
-	else
-		retuern 0;
-	end if;
-end
-$$
-language plpgsql
