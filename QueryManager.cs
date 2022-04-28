@@ -18,6 +18,7 @@ namespace DBFinal
         const string PASS = "11111";
         const string DB = "DB_Final";
         const string connectionString = $"Host={HOST};Username={USER};Password={PASS};Database={DB}";
+        private NpgsqlCommand cmd;
 
         public QueryManager()
         {
@@ -69,8 +70,8 @@ namespace DBFinal
             try
             {
                 conn.Open();
-                string sql = @"select * from u_login(:_username,:_password)";
-                var cmd = new NpgsqlCommand(sql, conn);
+                string sql = "select * from u_login(:_username,:_password)";
+                 cmd = new NpgsqlCommand(sql, conn);
 
                 cmd.Parameters.AddWithValue("_username", fm.textBox1.Text);
                 cmd.Parameters.AddWithValue("_password", fm.textBox2.Text);
@@ -88,6 +89,9 @@ namespace DBFinal
                 else
                 {
                     MessageBox.Show("Username or Password is incorrect. Please try again, or Register for an account.");
+                    MessageBox.Show(fm.textBox1.Text);
+                    MessageBox.Show(fm.textBox2.Text);
+
                     return;
                 }
 
@@ -107,11 +111,11 @@ namespace DBFinal
             try
             {
                 conn.Open();
-                string sql = @"select * from u_login(:_username,:_password)";
+                string sql = "select * from u_login(:_usernames,:_passwords)";
                 var cmd = new NpgsqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("_username", fm.textBox1.Text);
-                cmd.Parameters.AddWithValue("_password", fm.textBox2.Text);
+                cmd.Parameters.AddWithValue("_usernames", fm.textBox1.Text);
+                cmd.Parameters.AddWithValue("_passwords", fm.textBox2.Text);
 
                 int result = (int)cmd.ExecuteScalar();
 
