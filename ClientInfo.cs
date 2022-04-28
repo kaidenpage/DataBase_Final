@@ -35,19 +35,31 @@ namespace DBFinal
             {
                 conn.Open();
 
+                var sql1 = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
+                var sql2 = "INSERT INTO customer(cid, fname, lname,phone,email,address) VALUES(@cid, @fname,@lname,@phone,@email,@address)";
+            
+                using var cmd1 = new NpgsqlCommand(sql1, conn); 
+                using var cmd2 = new NpgsqlCommand(sql2, conn);
 
-                var sql = "INSERT INTO customer(cid, fname, lname,phone,email,address) VALUES(@cid, @fname,@lname,@phone,@email,@address)";
-                using var cmd = new NpgsqlCommand(sql, conn);
+                cmd1.Parameters.AddWithValue("street", textBox6.Text);
+                cmd1.Parameters.AddWithValue("city", textBox8.Text);
+                cmd1.Parameters.AddWithValue("state", textBox7.Text);
+                cmd1.Parameters.AddWithValue("zip", Int32.Parse(textBox9.Text));
+                cmd1.Prepare();
 
-                cmd.Parameters.AddWithValue("cid", textBox3);
-                cmd.Parameters.AddWithValue("fname", textBox1.Text);
-                cmd.Parameters.AddWithValue("lname", textBox2.Text);
-                cmd.Parameters.AddWithValue("phone", textBox4.Text);
-                cmd.Parameters.AddWithValue("email", textBox5.Text);
-                cmd.Parameters.AddWithValue("address", textBox6);
-                cmd.Prepare();
+                cmd1.ExecuteNonQuery();
 
-                cmd.ExecuteNonQuery();
+                Console.WriteLine("row inserted");
+
+                cmd2.Parameters.AddWithValue("cid", Int32.Parse(textBox3.Text));
+                cmd2.Parameters.AddWithValue("fname", textBox1.Text);
+                cmd2.Parameters.AddWithValue("lname", textBox2.Text);
+                cmd2.Parameters.AddWithValue("phone", textBox4.Text);
+                cmd2.Parameters.AddWithValue("email", textBox5.Text);
+                cmd2.Parameters.AddWithValue("address", textBox6.Text);
+                cmd2.Prepare();
+
+                cmd2.ExecuteNonQuery();
 
                 Console.WriteLine("row inserted");
 
@@ -85,6 +97,16 @@ namespace DBFinal
                 MessageBox.Show("Error: " + ex.Message, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 conn.Close();
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

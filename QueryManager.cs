@@ -15,7 +15,7 @@ namespace DBFinal
     {
         const string HOST = "localhost:5432";
         const string USER = "postgres";
-        const string PASS = "11111";
+        const string PASS = "123411";
         const string DB = "postgres";
         const string connectionString = $"Host={HOST};Username={USER};Password={PASS};Database={DB}";
         private NpgsqlCommand cmd;

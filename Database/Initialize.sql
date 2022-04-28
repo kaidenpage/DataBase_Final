@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Address
     (
-        AID INTEGER PRIMARY KEY,
-        Street VARCHAR(50) NOT NULL,
+        --AID INTEGER PRIMARY KEY,
+        Street VARCHAR(50) PRIMARY KEY,
         City VARCHAR(30) NOT NULL,
         State VARCHAR(2) NOT NULL,
         Zip NUMERIC(5,0) NOT NULL
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Employee
         Phone CHAR(12) NOT NULL,
         Salary INTEGER,
         Available BOOLEAN NOT NULL,
-        Address INTEGER REFERENCES Address ON DELETE SET NULL,
+        Address VARCHAR(50) REFERENCES Address ON DELETE SET NULL,
         CHECK (Salary > 0),
         CONSTRAINT emp_unique UNIQUE (Email, Phone)
     );
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS Customer
         Lname VARCHAR(50) NOT NULL,
         Phone CHAR(12) NOT NULL,
         Email VARCHAR(50) NOT NULL,
-        Address INTEGER REFERENCES Address ON DELETE SET NULL,
+        Address VARCHAR(50) REFERENCES Address ON DELETE SET NULL,
         CONSTRAINT cust_unique UNIQUE (Phone, Email, Address)
     );
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS Supplier
         Name VARCHAR(100) PRIMARY KEY,
         Phone CHAR(12) NOT NULL,
         Email VARCHAR(50) NOT NULL,
-        Address INTEGER REFERENCES Address ON DELETE SET NULL,
+        Address VARCHAR(50) REFERENCES Address ON DELETE SET NULL,
         CONSTRAINT supp_unique UNIQUE (Phone, Email, Address)
     );
 
@@ -73,16 +73,12 @@ CREATE TABLE IF NOT EXISTS Purchase
         CHECK (Quantity > 0 AND Price > 0)
     );
 
---CREATE TRIGGER purchase_log AFTER DELETE ON Purchase EXECUTE PROCEDURE log_row();
-
---CREATE OR REPLACE FUNCTION log_row RETURNS ... AS  
-
 CREATE TABLE IF NOT EXISTS Project
     (
         PID INTEGER PRIMARY KEY,
         Start DATE NOT NULL,
         Deadline DATE NOT NULL,
-        Location INTEGER REFERENCES Address NOT NULL,
+        Location VARCHAR(50) REFERENCES Address NOT NULL,
         Payment NUMERIC(9,2),
         Budget NUMERIC(9,2),
         NOTES TEXT,
