@@ -139,29 +139,29 @@ CREATE TABLE IF NOT EXISTS CustLogin
 
 
 -- Creating functions
-create function e_login(_usernames character varying, _passwords character varying)
+create or replace function e_login(_username character varying, _password character varying)
 returns int as
 $$
 begin
-	if(select count(*) from emplogin where users = _usernames and pass = _passwords) > 0 then
+	if(select count(*) from emplogin where users = _username and pass = _password) > 0 then
 		return 1;
 	else
 		return 0;
 	end if;
 end
 $$
-language plpgsql
+language plpgsql;
 
 
-create function u_login(_username character varying, _password character varying)
+create or replace function u_login(_username character varying, _password character varying)
 returns int as
 $$
 begin
-	if(select count(*) from custlogin where users = _usernames and pass = _passwords) > 0 then
+	if(select count(*) from custlogin where users = _username and pass = _password) > 0 then
 		return 1;
 	else
 		return 0;
 	end if;
 end
 $$
-language plpgsql
+language plpgsql;
