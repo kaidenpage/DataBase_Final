@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace DBFinal
 {
-    public partial class EmployeeLogin : Form
+    public partial class Client : Form
     {
-        public EmployeeLogin()
+        public Client(string username)
         {
+            this.username = username;
             InitializeComponent();
+        }
+
+        private string username;
+        private void Client_Load(object sender, EventArgs e)
+        {
+            lbluser.Text = lbluser.Text + " " + username;
         }
     }
 }

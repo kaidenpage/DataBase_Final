@@ -30,5 +30,12 @@ namespace DBFinal
         {
           
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Login attempt");
+            var qmanager = new QueryManager();
+            qmanager.Clientlogin();
+        }
     }
 }

@@ -102,19 +102,18 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Name = "ClientRegister";
-            this.Text = "Form3";
+            this.Text = "Register";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private TextBox textBox2;
-        private TextBox textBox1;
         private Label label3;
         private Label label2;
         private Button button1;
         private Label label1;
+        public TextBox textBox2;
+        public TextBox textBox1;
     }
 }

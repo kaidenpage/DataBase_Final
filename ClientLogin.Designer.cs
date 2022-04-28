@@ -56,6 +56,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -137,9 +138,9 @@
         private Button button1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
-        private TextBox textBox2;
         private Label label4;
         private Button button2;
+        public TextBox textBox1;
+        public TextBox textBox2;
     }
 }
