@@ -52,7 +52,7 @@ namespace DBFinal
                 string sql = @"select * from u_login(:_username,_password)";
                 var cmd = new NpgsqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("_username",textBox1.Text);
+                cmd.Parameters.AddWithValue("_username",textBox1);
                 cmd.Parameters.AddWithValue("_password", textBox2.Text);
 
                 int result = (int)cmd.ExecuteScalar();
