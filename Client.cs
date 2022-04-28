@@ -26,9 +26,7 @@ namespace DBFinal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ClientInfo fm = new ClientInfo();
-            fm.ShowDialog();
+          
         }
     }
 }
