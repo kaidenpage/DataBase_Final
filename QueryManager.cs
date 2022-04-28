@@ -71,26 +71,81 @@ namespace DBFinal
         {
             var conn = GetConnection();
             ClientLogin fm = new ClientLogin();
+            string usertext = fm.textBox1.Text;
+            string passwordtext = fm.textBox2.Text;
             try
             {
                 conn.Open();
-                string sql = @"select * from u_login(:_username,_password)";
+                string sql = @"select * from u_login(:_username,:_password)";
                 var cmd = new NpgsqlCommand(sql, conn);
 
-                cmd.Parameters.AddWithValue("_username", fm.Textbox.1);
+                cmd.Parameters.AddWithValue("_username", fm.textBox1.Text);
+                cmd.Parameters.AddWithValue("_password", fm.textBox2.Text);
+
+                int result = (int)cmd.ExecuteScalar();
 
 
-                
                 conn.Close();
-                
+
+                if (result == 1)
+                {
+                    fm.Hide();
+                    new Client(fm.textBox1.Text).Show();
+                }
+                else
+                {
+                    MessageBox.Show("Username or Password is incorrect. Please try again, or Register for an account.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    return;
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: "+ ex.Message, "Something went wrong",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 conn.Close();
             }
-           
+
         }
+
+        public void clientlogin2()
+        {
+            var conn = GetConnection();
+           
+            try
+            {
+                ClientLogin fm = new ClientLogin();
+            string usertext = fm.textBox1.Text;
+            string passwordtext = fm.textBox2.Text;
+            conn.Open();
+            string sql = @"select * from u_login(:_username,:_password)";
+
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, conn))
+            {
+                command.Parameters.AddWithValue("_username", fm.textBox1.Text);
+                command.Parameters.AddWithValue("_password", fm.textBox2.Text);
+
+                int result = (int)command.ExecuteScalar();
+                if (result == 1)
+                {
+                    fm.Hide();
+                    new Client(fm.textBox1.Text).Show();
+                }
+                else
+                {
+                    MessageBox.Show("Username or Password is incorrect. Please try again, or Register for an account.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    return;
+                }
+                conn.Close();
+            }
+
+
+        }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                conn.Close();
+            }
+}
 
     }
 

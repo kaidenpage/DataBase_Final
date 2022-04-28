@@ -12,6 +12,8 @@ namespace DBFinal
 {
     public partial class Client : Form
     {
+
+        //public Client(string username)
         public Client(string username)
         {
             this.username = username;
@@ -22,7 +24,7 @@ namespace DBFinal
 
         private void Client_Load(object sender, EventArgs e)
         {
-            labelUser.Text = labelUser.Text + username;=
+            labelUser.Text = labelUser.Text + username;
         }
     }
 }
