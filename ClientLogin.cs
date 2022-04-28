@@ -56,8 +56,8 @@ namespace DBFinal
                 int result = (int)cmd.ExecuteScalar();
 
 
-                MessageBox.Show(textBox1.Text);
-                MessageBox.Show(textBox2.Text);
+                //MessageBox.Show(textBox1.Text);
+                //MessageBox.Show(textBox2.Text);
 
                 conn.Close();
 

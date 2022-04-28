@@ -28,5 +28,12 @@ namespace DBFinal
             qmanager.GetAllEmployees();
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EmployeeLogin fm = new EmployeeLogin();
+            fm.ShowDialog();
+        }
     }
 }
