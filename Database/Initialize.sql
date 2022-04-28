@@ -165,3 +165,17 @@ begin
 end
 $$
 language plpgsql;
+
+CREATE OR REPLACE FUNCTION make_account()
+RETURNS TRIGGER AS
+$$
+begin
+    INSERT INTO EmpLogin VALUES(NEW.EID, NEW.EID, 'default');
+    RETURN NULL;
+end
+$$
+language plpgsql;
+
+
+-- CREATE TRIGGERS
+CREATE OR REPLACE TRIGGER new_manager AFTER INSERT ON Staff FOR EACH ROW EXECUTE PROCEDURE make_account();
