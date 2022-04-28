@@ -102,7 +102,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Name = "ClientRegister";
-            this.Text = "Form3";
+            this.Text = "Register";
             this.ResumeLayout(false);
             this.PerformLayout();
 
