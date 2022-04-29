@@ -31,15 +31,23 @@ namespace DBFinal
             {
                 conn.Open();
                 //string sql = @"select * from inventory";
-                NpgsqlCommand get_cid = new NpgsqlCommand("SELECT CID FROM CustLogin WHERE Users=@username");
+                NpgsqlCommand get_cid = new NpgsqlCommand("SELECT CID FROM CustLogin WHERE Users=@Users", conn);
                 get_cid.Parameters.AddWithValue("Users", username);
+
+                //MessageBox.Show("" + username);
 
                 this.CID = (int)get_cid.ExecuteScalar();
 
-                NpgsqlCommand customer_info = new NpgsqlCommand("SELECT fname, lname, phone, email, address FROM Customer Where CID =@CID ", conn);
-                customer_info.Parameters.AddWithValue("CID", this.CID);
+                //MessageBox.Show("" + CID);
+
+                NpgsqlCommand customer_info = new NpgsqlCommand("SELECT fname, lname, phone, email, address FROM Customer Where cid =@cid ", conn);
+                customer_info.Parameters.AddWithValue("cid", (int)CID);
+                //MessageBox.Show("" + CID);
+
 
                 NpgsqlDataReader customer_data = customer_info.ExecuteReader();
+
+                MessageBox.Show("" + fname);
 
                 this.fname = (string)customer_data[0];
                 this.lname = (string)customer_data[1];
@@ -47,14 +55,15 @@ namespace DBFinal
                 this.email = (string)customer_data[3];
                 this.address = (string)customer_data[4];
 
-                NpgsqlCommand address_data = new NpgsqlCommand("Select * FROM Address WHERE street = @address");
+                NpgsqlCommand address_data = new NpgsqlCommand("Select * FROM Address WHERE street = @address", conn);
                 address_data.Parameters.AddWithValue("address", this.address);
+                //MessageBox.Show("" + address);
 
-                NpgsqlDataReader address_data2 = address_data.ExecuteReader();
+                //NpgsqlDataReader address_data2 = address_data.ExecuteReader();
 
-                this.city = (string)address_data2[1];
-                this.state = (string)address_data2[2];
-                this.zip = (int)address_data2[3];
+                //this.city = (string)address_data2[1];
+                //this.state = (string)address_data2[2];
+                //this.zip = (int)address_data2[3];
 
                 conn.Close();
 
