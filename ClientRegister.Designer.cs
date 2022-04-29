@@ -33,7 +33,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label11
@@ -82,6 +82,7 @@
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(295, 347);
+            this.textBox9.MaxLength = 5;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(140, 23);
             this.textBox9.TabIndex = 37;
@@ -92,13 +93,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(140, 23);
             this.textBox8.TabIndex = 36;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(295, 298);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(140, 23);
-            this.textBox7.TabIndex = 35;
             // 
             // button1
             // 
@@ -233,11 +227,81 @@
             this.label8.TabIndex = 42;
             this.label8.Text = "Password";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "AK",
+            "AL",
+            "AR",
+            "AS",
+            "AZ",
+            "CA",
+            "CM",
+            "CO",
+            "CT",
+            "DC",
+            "DE",
+            "FL",
+            "GA",
+            "GU",
+            "HI",
+            "IA",
+            "ID",
+            "IL",
+            "IN",
+            "KS",
+            "KY",
+            "LA",
+            "MD",
+            "ME",
+            "MI",
+            "MN",
+            "MO",
+            "MS",
+            "MT",
+            "NC",
+            "ND",
+            "NE",
+            "NH",
+            "NJ",
+            "NM",
+            "NV",
+            "NY",
+            "OH",
+            "OK",
+            "OR",
+            "PA",
+            "PR",
+            "RI",
+            "SC",
+            "SD",
+            "TN",
+            "TT",
+            "TX",
+            "UT",
+            "VA",
+            "VI",
+            "VT",
+            "WA",
+            "WI",
+            "WV",
+            "WY"});
+            this.comboBox1.Location = new System.Drawing.Point(305, 303);
+            this.comboBox1.MaxLength = 2;
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.Sorted = true;
+            this.comboBox1.TabIndex = 43;
+            // 
             // ClientRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.label11);
@@ -245,7 +309,6 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label7);
@@ -274,7 +337,6 @@
         private Label label9;
         private TextBox textBox9;
         private TextBox textBox8;
-        private TextBox textBox7;
         private Button button1;
         private TextBox textBox6;
         private Label label7;
@@ -291,5 +353,6 @@
         private Label label1;
         private TextBox textBox10;
         private Label label8;
+        public ComboBox comboBox1;
     }
 }
