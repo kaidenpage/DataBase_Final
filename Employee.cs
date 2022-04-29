@@ -27,7 +27,7 @@ namespace DBFinal
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CompanyVendors fm = new CompanyVendors();
+            Inventory fm = new Inventory();
             fm.ShowDialog();
         }
 
