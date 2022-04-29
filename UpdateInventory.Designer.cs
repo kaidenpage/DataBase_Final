@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(548, 351);
+            this.button1.Location = new System.Drawing.Point(496, 310);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 39);
             this.button1.TabIndex = 21;
@@ -107,11 +108,22 @@
             this.label2.TabIndex = 15;
             this.label2.Text = "Item Name: ";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(710, 410);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Back";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // UpdateInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxUnits);
             this.Controls.Add(this.label4);
@@ -138,5 +150,6 @@
         private Label label3;
         private TextBox textBoxName;
         private Label label2;
+        private Button button2;
     }
 }

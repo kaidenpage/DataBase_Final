@@ -117,5 +117,12 @@ namespace DBFinal
             textBoxQuantity.Text = row.Cells[1].Value.ToString();
             textBoxUnits.Text = row.Cells[2].Value.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Inventory fm = new Inventory();
+            fm.ShowDialog();
+        }
     }
 }
