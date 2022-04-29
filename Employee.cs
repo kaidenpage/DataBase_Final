@@ -42,6 +42,7 @@ namespace DBFinal
 
         private void ProjectsBtn_Click(object sender, EventArgs e)
         {
+            this.Close();
             ProjectsForm frm = new ProjectsForm();
             frm.ShowDialog();
         }
