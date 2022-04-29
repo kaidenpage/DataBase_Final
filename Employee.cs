@@ -23,5 +23,12 @@ namespace DBFinal
         {
             lbluser.Text = lbluser.Text + " " + username;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CompanyVendors fm = new CompanyVendors();
+            fm.ShowDialog();
+        }
     }
 }
