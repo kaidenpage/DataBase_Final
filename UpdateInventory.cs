@@ -11,9 +11,9 @@ using Npgsql;
 
 namespace DBFinal
 {
-    public partial class Inventory : Form
+    public partial class UpdateInventory : Form
     {
-        public Inventory()
+        public UpdateInventory()
         {
             InitializeComponent();
             Console.WriteLine("Viewing inventory attempt");
@@ -58,25 +58,25 @@ namespace DBFinal
             }
         }
 
+        DataTable table = new DataTable();
+        int indexRow;
+
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            NewItem fm = new NewItem();
-            fm.ShowDialog();
+            DataGridViewRow newDataRow = dataGridView1.Rows[indexRow];
+            newDataRow.Cells[0].Value = textBoxName.Text;
+            newDataRow.Cells[1].Value = Int32.Parse(textBoxQuantity.Text);
+            newDataRow.Cells[2].Value = textBoxUnits.Text;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Close();
-            Employee back = new Employee("User");
-            back.Show();
-        }
+            indexRow = e.RowIndex;
+            DataGridViewRow row = dataGridView1.Rows[indexRow];
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            UpdateInventory fm = new UpdateInventory();
-            fm.ShowDialog();
+            textBoxName.Text = row.Cells[0].Value.ToString();
+            textBoxQuantity.Text = row.Cells[1].Value.ToString();
+            textBoxUnits.Text = row.Cells[2].Value.ToString();
         }
     }
 }
