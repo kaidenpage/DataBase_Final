@@ -34,6 +34,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.ProjectsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbluser
@@ -93,11 +94,22 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // ProjectsBtn
+            // 
+            this.ProjectsBtn.Location = new System.Drawing.Point(316, 119);
+            this.ProjectsBtn.Name = "ProjectsBtn";
+            this.ProjectsBtn.Size = new System.Drawing.Size(155, 60);
+            this.ProjectsBtn.TabIndex = 5;
+            this.ProjectsBtn.Text = "Projects";
+            this.ProjectsBtn.UseVisualStyleBackColor = true;
+            this.ProjectsBtn.Click += new System.EventHandler(this.ProjectsBtn_Click);
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ProjectsBtn);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -120,5 +132,6 @@
         private Button button2;
         private Label label2;
         private Button button3;
+        private Button ProjectsBtn;
     }
 }

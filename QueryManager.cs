@@ -15,8 +15,8 @@ namespace DBFinal
     {
         const string HOST = "localhost:5432";
         const string USER = "postgres";
-        const string PASS = "123411";
-        const string DB = "postgres";
+        const string PASS = "Youarestrong07!";
+        const string DB = "DB_Final";
         const string connectionString = $"Host={HOST};Username={USER};Password={PASS};Database={DB}";
         private NpgsqlCommand cmd;
 
@@ -61,6 +61,24 @@ namespace DBFinal
                 }
                 conn.Close();
             }
+        }
+
+        public List<List<string>> ProjectsBeingWorkedOn()
+        {
+            var conn = GetConnection();
+            conn.Open();
+            string sql = "SELECT fname || ' ' || lname AS fullName, pid FROM employee E JOIN working W ON E.eid = W.eid ORDER BY pid DESC;";
+            var projects =  new List<List<string>>();
+            using (NpgsqlCommand command = new NpgsqlCommand(sql, conn))
+            {
+                NpgsqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    projects.Add(new List<string> { reader["fullName"].ToString(), reader["pid"].ToString() });
+                }
+                conn.Close();
+            }
+            return projects;
         }
 
         public void Clientlogin()
