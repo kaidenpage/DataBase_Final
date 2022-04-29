@@ -47,6 +47,8 @@ namespace DBFinal
                 using var cmd_address = new NpgsqlCommand(sql_address, conn);
                 using var cmd_customer = new NpgsqlCommand(sql_customer, conn);
                 using var cmd_custLogin = new NpgsqlCommand(sql_custLogin, conn);
+                using var get_sequence = new NpgsqlCommand(@"SELECT MAX(cid) FROM Customer()", conn);
+
 
                 cmd_address.Parameters.AddWithValue("street", textBox6.Text);
                 cmd_address.Parameters.AddWithValue("city", textBox8.Text);
@@ -69,7 +71,10 @@ namespace DBFinal
 
                 Console.WriteLine("Customer row inserted");
 
+                int CID = (int)get_sequence.ExecuteScalar(); 
+
                 cmd_custLogin.Parameters.AddWithValue("users", textBox3.Text);
+                cmd_custLogin.Parameters.AddWithValue("CID", CID);
                 cmd_custLogin.Parameters.AddWithValue("pass", textBox10.Text);
                 cmd_custLogin.Prepare();
 

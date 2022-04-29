@@ -193,18 +193,8 @@ end
 $$
 language plpgsql;
 
-CREATE OR REPLACE FUNCTION update_CustLogin()
-RETURNS TRIGGER AS
-$$
-begin
-    UPDATE CustLogin SET CID = NEW.CID WHERE CustLogin.CID IS NULL;
-    RETURN NULL;
-end
-$$
-language plpgsql;
 
 -- CREATE TRIGGERS
 CREATE OR REPLACE TRIGGER new_manager AFTER INSERT ON Staff EXECUTE PROCEDURE make_account();
 
-CREATE OR REPLACE TRIGGER new_customer AFTER INSERT ON Customer EXECUTE PROCEDURE update_CustLogin();
 
