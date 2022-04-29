@@ -42,12 +42,12 @@ namespace DBFinal
 
                 var sql_address = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
                 var sql_customer = "INSERT INTO customer(fname, lname,phone,email,address) VALUES(@fname,@lname,@phone,@email,@address)";
-                var sql_custLogin = "INSERT INTO CustLogin(users, pass) VALUES(@users, @pass)";
+                var sql_custLogin = "INSERT INTO CustLogin(users, CID, pass) VALUES(@users, @CID, @pass)";
 
                 using var cmd_address = new NpgsqlCommand(sql_address, conn);
                 using var cmd_customer = new NpgsqlCommand(sql_customer, conn);
                 using var cmd_custLogin = new NpgsqlCommand(sql_custLogin, conn);
-                using var get_sequence = new NpgsqlCommand(@"SELECT MAX(cid) FROM Customer()", conn);
+                using var get_sequence = new NpgsqlCommand(@"SELECT MAX(cid) FROM Customer", conn);
 
 
                 cmd_address.Parameters.AddWithValue("street", textBox6.Text);
@@ -92,7 +92,7 @@ namespace DBFinal
                    int result = (int)cmd.ExecuteScalar();
    */
 
-                //MessageBox.Show(textBox1.Text);
+                //MessageBox.Show("" + CID);
                 //MessageBox.Show(textBox2.Text);
 
                 conn.Close();
