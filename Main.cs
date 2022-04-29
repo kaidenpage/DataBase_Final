@@ -23,9 +23,9 @@ namespace DBFinal
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("Fetching employees");
-            var qmanager = new QueryManager();
-            qmanager.GetAllEmployees();
+            //Console.WriteLine("Fetching employees");
+            //var qmanager = new QueryManager();
+            //qmanager.GetAllEmployees();
 
         }
 

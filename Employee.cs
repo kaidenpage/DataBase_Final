@@ -38,5 +38,11 @@ namespace DBFinal
             logout.Show();
 
         }
+
+        private void ProjectsBtn_Click(object sender, EventArgs e)
+        {
+            ProjectsForm frm = new ProjectsForm();
+            frm.ShowDialog();
+        }
     }
 }
