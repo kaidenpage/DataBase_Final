@@ -52,5 +52,12 @@ namespace DBFinal
             Inventory fm = new Inventory();
             fm.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            EmployeeAdmin fm = new EmployeeAdmin();
+            fm.ShowDialog();
+        }
     }
 }

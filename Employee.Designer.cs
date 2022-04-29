@@ -36,6 +36,8 @@
             this.ProjectsBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbluser
@@ -114,11 +116,32 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(316, 272);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(155, 59);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Admin";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(342, 254);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 15);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Employee Login";
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ProjectsBtn);
@@ -145,5 +168,7 @@
         private Button ProjectsBtn;
         private Label label3;
         private Button button2;
+        private Button button4;
+        private Label label4;
     }
 }
