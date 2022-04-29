@@ -27,15 +27,10 @@ namespace DBFinal
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Inventory fm = new Inventory();
-            fm.ShowDialog();
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
             Supplier fm = new Supplier();
             fm.ShowDialog();
         }
+       
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -49,6 +44,13 @@ namespace DBFinal
         {
             ProjectsForm frm = new ProjectsForm();
             frm.ShowDialog();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Inventory fm = new Inventory();
+            fm.ShowDialog();
         }
     }
 }
