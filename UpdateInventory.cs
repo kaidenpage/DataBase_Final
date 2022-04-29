@@ -67,6 +67,45 @@ namespace DBFinal
             newDataRow.Cells[0].Value = textBoxName.Text;
             newDataRow.Cells[1].Value = Int32.Parse(textBoxQuantity.Text);
             newDataRow.Cells[2].Value = textBoxUnits.Text;
+
+            Console.WriteLine("Updating inventory attempt");
+            //var qmanager = new QueryManager();
+            //qmanager.Clientlogin(textBox1.Text, textBox2.Text);
+
+            const string HOST = "localhost:5432";
+            const string USER = "postgres";
+            const string PASS = "123411";
+            const string DB = "postgres";
+            const string connectionString = $"Host={HOST};Username={USER};Password={PASS};Database={DB}";
+            var conn = new NpgsqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+                //string sql = @"select * from inventory";
+                NpgsqlCommand cmd = new NpgsqlCommand("Update inventory Set name=@namee, quantity=@quan, units = @unit where name=@namee", conn);
+
+                cmd.Parameters.AddWithValue("namee", textBoxName.Text);
+                cmd.Parameters.AddWithValue("quan", Int32.Parse(textBoxQuantity.Text));
+                cmd.Parameters.AddWithValue("namee", textBoxUnits.Text);
+
+                cmd.ExecuteNonQuery();
+                //cmd.Connection = conn;
+                //cmd.CommandType = CommandType.Text;
+                //cmd.CommandText = sql;
+               
+
+
+                conn.Close();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                conn.Close();
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
