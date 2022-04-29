@@ -38,5 +38,12 @@ namespace DBFinal
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Employee back = new Employee("User");
+            back.Show();
+        }
     }
 }
