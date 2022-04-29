@@ -44,7 +44,7 @@ namespace DBFinal
 
                 cmd_address.Parameters.AddWithValue("street", textBox4.Text);
                 cmd_address.Parameters.AddWithValue("city", textBox6.Text);
-                cmd_address.Parameters.AddWithValue("state", textBox5.Text);
+                cmd_address.Parameters.AddWithValue("state", comboBox1.SelectedItem);
                 cmd_address.Parameters.AddWithValue("zip", Int32.Parse(textBox7.Text));
                 cmd_address.Prepare();
 

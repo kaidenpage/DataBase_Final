@@ -52,7 +52,7 @@ namespace DBFinal
 
                 cmd_address.Parameters.AddWithValue("street", textBox6.Text);
                 cmd_address.Parameters.AddWithValue("city", textBox8.Text);
-                cmd_address.Parameters.AddWithValue("state", textBox7.Text);
+                cmd_address.Parameters.AddWithValue("state", comboBox1.SelectedItem);
                 cmd_address.Parameters.AddWithValue("zip", Int32.Parse(textBox9.Text));
                 cmd_address.Prepare();
 
