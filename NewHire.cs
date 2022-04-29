@@ -11,12 +11,11 @@ using Npgsql;
 
 namespace DBFinal
 {
-    public partial class NewItem : Form
+    public partial class NewHire : Form
     {
-        public NewItem()
+        public NewHire()
         {
             InitializeComponent();
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,7 +35,7 @@ namespace DBFinal
             {
                 conn.Open();
 
-                var sql1 = "INSERT INTO inventory(name, quantity, units) VALUES(@name, @quantity, @units)";
+                var sql1 = "INSERT INTO emplogin(users,pass) VALUES(@uname, @password)";
                 // var sql_address = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
 
                 using var cmd1 = new NpgsqlCommand(sql1, conn);
@@ -53,10 +52,10 @@ namespace DBFinal
 
                 // Console.WriteLine("Address row inserted");
 
-                cmd1.Parameters.AddWithValue("name", textBox1.Text);
-                cmd1.Parameters.AddWithValue("quantity", Int32.Parse(textBox2.Text));
-                cmd1.Parameters.AddWithValue("units", textBox3.Text);
-               // cmd1.Parameters.AddWithValue("address", textBox4.Text);
+                cmd1.Parameters.AddWithValue("uname", textBox1.Text);
+                cmd1.Parameters.AddWithValue("password", textBox2.Text);
+                //cmd1.Parameters.AddWithValue("units", textBox3.Text);
+                // cmd1.Parameters.AddWithValue("address", textBox4.Text);
                 cmd1.Prepare();
 
                 cmd1.ExecuteNonQuery();
@@ -109,41 +108,6 @@ namespace DBFinal
                 MessageBox.Show("Error: " + ex.Message, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 conn.Close();
             }
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
