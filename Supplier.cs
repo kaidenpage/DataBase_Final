@@ -135,7 +135,7 @@ namespace DBFinal
                     conn.Open();
                     string name = dataGridView1.Rows[e.RowIndex].Cells["name"].FormattedValue.ToString();
                     //string sql = @"select * from supplier";
-                    NpgsqlCommand cmd = new NpgsqlCommand("Delete supplier where name = '" + name + "' ", conn);
+                    NpgsqlCommand cmd = new NpgsqlCommand("Delete from supplier where name = '" + name + "' ", conn);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Successfully Deleted");
 
@@ -157,6 +157,11 @@ namespace DBFinal
                 BindGrid();
             }
            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

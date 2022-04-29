@@ -36,5 +36,16 @@ namespace DBFinal
             back.Show();
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Updating Client info attempt");
+
+        }
     }
 }
