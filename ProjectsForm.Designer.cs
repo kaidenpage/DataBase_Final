@@ -34,12 +34,16 @@
             // 
             // ProjectsFormGridView
             // 
+            this.ProjectsFormGridView.AllowUserToAddRows = false;
+            this.ProjectsFormGridView.AllowUserToDeleteRows = false;
             this.ProjectsFormGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProjectsFormGridView.Location = new System.Drawing.Point(12, 12);
             this.ProjectsFormGridView.Name = "ProjectsFormGridView";
+            this.ProjectsFormGridView.ReadOnly = true;
             this.ProjectsFormGridView.RowTemplate.Height = 25;
             this.ProjectsFormGridView.Size = new System.Drawing.Size(776, 426);
             this.ProjectsFormGridView.TabIndex = 0;
+            this.ProjectsFormGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProjectsFormGridView_CellContentClick);
             // 
             // ProjectsForm
             // 

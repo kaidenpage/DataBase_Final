@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -39,28 +38,20 @@
             this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(333, 402);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "Register";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(302, 384);
+            this.label4.Location = new System.Drawing.Point(191, 403);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(144, 15);
+            this.label4.Size = new System.Drawing.Size(351, 15);
             this.label4.TabIndex = 14;
-            this.label4.Text = "New Client? Register here!";
+            this.label4.Text = "If you\'re a manager and don\'t have an account please speak to IT.";
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(314, 198);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(216, 23);
             this.textBox2.TabIndex = 13;
             // 
@@ -128,7 +119,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -144,8 +134,6 @@
         }
 
         #endregion
-
-        private Button button2;
         private Label label4;
         public TextBox textBox2;
         public TextBox textBox1;
