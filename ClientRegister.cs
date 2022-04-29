@@ -40,33 +40,42 @@ namespace DBFinal
             {
                 conn.Open();
 
-                var sql1 = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
-                var sql2 = "INSERT INTO customer(cid, fname, lname,phone,email,address) VALUES(@cid, @fname,@lname,@phone,@email,@address)";
+                var sql_address = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
+                var sql_customer = "INSERT INTO customer(fname, lname,phone,email,address) VALUES(@fname,@lname,@phone,@email,@address)";
+                var sql_custLogin = "INSERT INTO CustLogin(users, pass) VALUES(@users, @pass)";
 
-                using var cmd1 = new NpgsqlCommand(sql1, conn);
-                using var cmd2 = new NpgsqlCommand(sql2, conn);
+                using var cmd_address = new NpgsqlCommand(sql_address, conn);
+                using var cmd_customer = new NpgsqlCommand(sql_customer, conn);
+                using var cmd_custLogin = new NpgsqlCommand(sql_custLogin, conn);
 
-                cmd1.Parameters.AddWithValue("street", textBox6.Text);
-                cmd1.Parameters.AddWithValue("city", textBox8.Text);
-                cmd1.Parameters.AddWithValue("state", textBox7.Text);
-                cmd1.Parameters.AddWithValue("zip", Int32.Parse(textBox9.Text));
-                cmd1.Prepare();
+                cmd_address.Parameters.AddWithValue("street", textBox6.Text);
+                cmd_address.Parameters.AddWithValue("city", textBox8.Text);
+                cmd_address.Parameters.AddWithValue("state", textBox7.Text);
+                cmd_address.Parameters.AddWithValue("zip", Int32.Parse(textBox9.Text));
+                cmd_address.Prepare();
 
-                cmd1.ExecuteNonQuery();
+                cmd_address.ExecuteNonQuery();
 
-                Console.WriteLine("row inserted");
+                Console.WriteLine("Address row inserted");
 
-                cmd2.Parameters.AddWithValue("cid", Int32.Parse(textBox3.Text));
-                cmd2.Parameters.AddWithValue("fname", textBox1.Text);
-                cmd2.Parameters.AddWithValue("lname", textBox2.Text);
-                cmd2.Parameters.AddWithValue("phone", textBox4.Text);
-                cmd2.Parameters.AddWithValue("email", textBox5.Text);
-                cmd2.Parameters.AddWithValue("address", textBox6.Text);
-                cmd2.Prepare();
+                cmd_customer.Parameters.AddWithValue("fname", textBox1.Text);
+                cmd_customer.Parameters.AddWithValue("lname", textBox2.Text);
+                cmd_customer.Parameters.AddWithValue("phone", textBox4.Text);
+                cmd_customer.Parameters.AddWithValue("email", textBox5.Text);
+                cmd_customer.Parameters.AddWithValue("address", textBox6.Text);
+                cmd_customer.Prepare();
 
-                cmd2.ExecuteNonQuery();
+                cmd_customer.ExecuteNonQuery();
 
-                Console.WriteLine("row inserted");
+                Console.WriteLine("Customer row inserted");
+
+                cmd_custLogin.Parameters.AddWithValue("users", textBox3.Text);
+                cmd_custLogin.Parameters.AddWithValue("pass", textBox10.Text);
+                cmd_custLogin.Prepare();
+
+                cmd_custLogin.ExecuteNonQuery();
+
+                Console.WriteLine("Customer Login Created");
 
 
                 /*   string sql = @"select * from u_login(:_username,:_password)";
@@ -102,6 +111,11 @@ namespace DBFinal
                 MessageBox.Show("Error: " + ex.Message, "Something went wrong", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 conn.Close();
             }
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
