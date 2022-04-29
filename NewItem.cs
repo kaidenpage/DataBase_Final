@@ -54,7 +54,7 @@ namespace DBFinal
                 // Console.WriteLine("Address row inserted");
 
                 cmd1.Parameters.AddWithValue("name", textBox1.Text);
-                cmd1.Parameters.AddWithValue("quantity", textBox2.Text);
+                cmd1.Parameters.AddWithValue("quantity", Int32.Parse(textBox2.Text));
                 cmd1.Parameters.AddWithValue("units", textBox3.Text);
                // cmd1.Parameters.AddWithValue("address", textBox4.Text);
                 cmd1.Prepare();
