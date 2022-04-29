@@ -47,24 +47,37 @@ namespace DBFinal
 
                 NpgsqlDataReader customer_data = customer_info.ExecuteReader();
 
-                MessageBox.Show("" + fname);
+                //MessageBox.Show("" + fname);
+                if (customer_data.HasRows)
+                {
+                    customer_data.Read();
 
-                this.fname = (string)customer_data[0];
-                this.lname = (string)customer_data[1];
-                this.phone = (string)customer_data[2];
-                this.email = (string)customer_data[3];
-                this.address = (string)customer_data[4];
+                    this.fname = (string)customer_data[0];
+                    this.lname = (string)customer_data[1];
+                    this.phone = (string)customer_data[2];
+                    this.email = (string)customer_data[3];
+                    this.address = (string)customer_data[4];
+
+                }
+
+                conn.Close();
+
+                conn.Open();
 
                 NpgsqlCommand address_data = new NpgsqlCommand("Select * FROM Address WHERE street = @address", conn);
                 address_data.Parameters.AddWithValue("address", this.address);
                 //MessageBox.Show("" + address);
 
-                //NpgsqlDataReader address_data2 = address_data.ExecuteReader();
+                NpgsqlDataReader address_data2 = address_data.ExecuteReader();
 
-                //this.city = (string)address_data2[1];
-                //this.state = (string)address_data2[2];
-                //this.zip = (int)address_data2[3];
+                if (address_data2.HasRows)
+                {
+                    address_data2.Read();
 
+                    this.city = (string)address_data2[1];
+                    this.state = (string)address_data2[2];
+                    this.zip = (int)address_data2[3];
+                }
                 conn.Close();
 
             }
@@ -131,19 +144,20 @@ namespace DBFinal
             {
                 conn.Open();
                 //string sql = @"select * from inventory";
-                NpgsqlCommand update_address = new NpgsqlCommand("Update Address Set street=@street, city=@city, state=@state, zip=@zip where street=@street", conn);
+                NpgsqlCommand update_address = new NpgsqlCommand("Update Address Set street=@street, city=@city, state=@state, zip=@zip where street=@street2", conn);
                 NpgsqlCommand update_client = new NpgsqlCommand("Update Customer Set fname=@fname, lname=@lname, phone=@phone, email=@email Where CID=@CID", conn);
 
                 update_address.Parameters.AddWithValue("street", textBox6.Text);
                 update_address.Parameters.AddWithValue("city", textBox5.Text);
                 update_address.Parameters.AddWithValue("state", comboBox1.Text);
                 update_address.Parameters.AddWithValue("zip", Int32.Parse(textBox8.Text));
+                update_address.Parameters.AddWithValue("street2", this.address);
 
                 update_client.Parameters.AddWithValue("fname", textBox1.Text);
                 update_client.Parameters.AddWithValue("lname", textBox2.Text);
                 update_client.Parameters.AddWithValue("phone", textBox3.Text);
                 update_client.Parameters.AddWithValue("email", textBox7.Text);
-                // update_client.Parameters.AddWithValue("CID", )
+                update_client.Parameters.AddWithValue("CID", this.CID);
 
 
                 update_address.ExecuteNonQuery();

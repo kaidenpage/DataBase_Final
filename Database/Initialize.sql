@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Address
         Street VARCHAR(50) PRIMARY KEY,
         City VARCHAR(30) NOT NULL,
         State VARCHAR(2) NOT NULL,
-        Zip NUMERIC(5,0) NOT NULL
+        Zip INTEGER NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS Employee
