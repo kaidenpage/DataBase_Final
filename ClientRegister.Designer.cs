@@ -50,6 +50,7 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label11
@@ -296,11 +297,22 @@
             this.comboBox1.Sorted = true;
             this.comboBox1.TabIndex = 43;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(713, 415);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 44;
+            this.button2.Text = "Back";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // ClientRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox10);
@@ -354,5 +366,6 @@
         private TextBox textBox10;
         private Label label8;
         public ComboBox comboBox1;
+        private Button button2;
     }
 }
