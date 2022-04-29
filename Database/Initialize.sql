@@ -1,3 +1,14 @@
+--Create Sequences 
+CREATE SEQUENCE emp_serial;
+
+CREATE SEQUENCE cust_serial;
+
+CREATE SEQUENCE order_serial;
+
+CREATE SEQUENCE proj_serial;
+
+
+--Create Tables
 CREATE TABLE IF NOT EXISTS Address
     (
         --AID INTEGER PRIMARY KEY,
@@ -9,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Address
 
 CREATE TABLE IF NOT EXISTS Employee
     (
-        EID INTEGER PRIMARY KEY, 
+        EID INTEGER PRIMARY KEY DEFAULT nextval('emp_serial'), 
         Fname VARCHAR(50) NOT NULL, 
         Lname VARCHAR(50) NOT NULL, 
         Email VARCHAR(50) NOT NULL, 
@@ -36,7 +47,7 @@ CREATE TABLE IF NOT EXISTS Staff
 
 CREATE TABLE IF NOT EXISTS Customer
     (
-        CID INTEGER PRIMARY KEY,
+        CID INTEGER PRIMARY KEY DEFAULT nextval('cust_serial'),
         Fname VARCHAR(50) NOT NULL,
         Lname VARCHAR(50) NOT NULL,
         Phone CHAR(12) NOT NULL,
@@ -64,7 +75,7 @@ CREATE TABLE IF NOT EXISTS Inventory
 
 CREATE TABLE IF NOT EXISTS Purchase
     (
-        OrderID INTEGER PRIMARY KEY,
+        OrderID INTEGER PRIMARY KEY DEFAULT nextval('order_serial'),
         EID INTEGER REFERENCES Employee ON DELETE SET NULL,
         Supplier VARCHAR(100) REFERENCES Supplier ON DELETE CASCADE,
         Quantity INTEGER,
@@ -75,7 +86,7 @@ CREATE TABLE IF NOT EXISTS Purchase
 
 CREATE TABLE IF NOT EXISTS Project
     (
-        PID INTEGER PRIMARY KEY,
+        PID INTEGER PRIMARY KEY DEFAULT nextval('proj_serial'),
         Start DATE NOT NULL,
         Deadline DATE NOT NULL,
         Location VARCHAR(50) REFERENCES Address NOT NULL,
@@ -107,6 +118,8 @@ CREATE TABLE IF NOT EXISTS CustLogin
         Pass VARCHAR(20) NOT NULL
     );
 
+
+--Bulk copy initial table data
 \copy Address FROM 'Data - CSV/Address.csv' WITH DELIMITER ',' CSV HEADER;
 
 \copy Employee FROM 'Data - CSV/Employee.csv' WITH DELIMITER ',' CSV HEADER;
@@ -132,6 +145,14 @@ CREATE TABLE IF NOT EXISTS CustLogin
 \copy CustLogin FROM 'Data - CSV/CustLogin.csv' WITH DELIMITER ',' CSV HEADER;
 
 
+--Sequence Updates
+SELECT setval('emp_serial', max(EID)) FROM Employee;
+
+SELECT setval('cust_serial', max(CID)) FROM Customer;
+
+SELECT setval('order_serial', max(OrderID)) FROM Purchase;
+
+SELECT setval('proj_serial', max(PID)) FROM Project;
 
 
 -- Creating functions
@@ -172,6 +193,18 @@ end
 $$
 language plpgsql;
 
+CREATE OR REPLACE FUNCTION update_CustLogin()
+RETURNS TRIGGER AS
+$$
+begin
+    UPDATE CustLogin SET CID = NEW.CID WHERE CustLogin.CID IS NULL;
+    RETURN NULL;
+end
+$$
+language plpgsql;
 
 -- CREATE TRIGGERS
-CREATE OR REPLACE TRIGGER new_manager AFTER INSERT ON Staff FOR EACH ROW EXECUTE PROCEDURE make_account();
+CREATE OR REPLACE TRIGGER new_manager AFTER INSERT ON Staff EXECUTE PROCEDURE make_account();
+
+CREATE OR REPLACE TRIGGER new_customer AFTER INSERT ON Customer EXECUTE PROCEDURE update_CustLogin();
+
