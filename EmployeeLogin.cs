@@ -74,5 +74,13 @@ namespace DBFinal
             }
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Main back = new Main();
+            back.Show();
+
+        }
     }
 }
