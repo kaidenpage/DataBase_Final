@@ -102,6 +102,9 @@ namespace DBFinal
                                     //MessageBox.Show(fm.textBox2.Text);
                                     return;
                                 }*/
+                this.Close();
+                Inventory back = new Inventory();
+                back.Show();
 
             }
             catch (Exception ex)
@@ -144,6 +147,13 @@ namespace DBFinal
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Inventory back = new Inventory();
+            back.Show();
         }
     }
 }

@@ -101,6 +101,9 @@ namespace DBFinal
                                     //MessageBox.Show(fm.textBox2.Text);
                                     return;
                                 }*/
+                this.Close();
+                Supplier back = new Supplier();
+                back.Show();
 
             }
             catch (Exception ex)
@@ -112,6 +115,9 @@ namespace DBFinal
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Close();
+            Supplier back = new Supplier();
+            back.Show();
         }
     }
 }
