@@ -87,7 +87,7 @@ namespace DBFinal
 
                 cmd.Parameters.AddWithValue("namee", textBoxName.Text);
                 cmd.Parameters.AddWithValue("quan", Int32.Parse(textBoxQuantity.Text));
-                cmd.Parameters.AddWithValue("namee", textBoxUnits.Text);
+                cmd.Parameters.AddWithValue("unit", textBoxUnits.Text);
 
                 cmd.ExecuteNonQuery();
                 //cmd.Connection = conn;
