@@ -38,6 +38,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -102,13 +108,13 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 268);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 15);
+            this.label5.Size = new System.Drawing.Size(43, 15);
             this.label5.TabIndex = 7;
-            this.label5.Text = "Street Address: ";
+            this.label5.Text = "Street: ";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(106, 265);
+            this.textBox4.Location = new System.Drawing.Point(69, 265);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(81, 23);
             this.textBox4.TabIndex = 8;
@@ -123,11 +129,65 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(465, 268);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(81, 23);
+            this.textBox5.TabIndex = 10;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(250, 268);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(81, 23);
+            this.textBox6.TabIndex = 11;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(669, 268);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(81, 23);
+            this.textBox7.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(201, 273);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 15);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "City: ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(416, 273);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(39, 15);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "State: ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(620, 276);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 15);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Zip: ";
+            // 
             // NewVendor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
@@ -157,5 +217,11 @@
         private Label label5;
         private TextBox textBox4;
         private Button button1;
+        private TextBox textBox5;
+        private TextBox textBox6;
+        private TextBox textBox7;
+        private Label label6;
+        private Label label7;
+        private Label label8;
     }
 }

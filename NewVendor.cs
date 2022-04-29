@@ -36,15 +36,26 @@ namespace DBFinal
                 conn.Open();
 
                 var sql1 = "INSERT INTO supplier(name, phone, email, address) VALUES(@name, @phone, @email, @address)";
-                
+                var sql_address = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
 
                 using var cmd1 = new NpgsqlCommand(sql1, conn);
+                using var cmd_address = new NpgsqlCommand(sql_address, conn);
                 //using var cmd2 = new NpgsqlCommand(sql2, conn);
+
+                cmd_address.Parameters.AddWithValue("street", textBox4.Text);
+                cmd_address.Parameters.AddWithValue("city", textBox6.Text);
+                cmd_address.Parameters.AddWithValue("state", textBox5.Text);
+                cmd_address.Parameters.AddWithValue("zip", Int32.Parse(textBox7.Text));
+                cmd_address.Prepare();
+
+                cmd_address.ExecuteNonQuery();
+
+                Console.WriteLine("Address row inserted");
 
                 cmd1.Parameters.AddWithValue("name", textBox1.Text);
                 cmd1.Parameters.AddWithValue("phone", textBox2.Text);
                 cmd1.Parameters.AddWithValue("email", textBox3.Text);
-                cmd1.Parameters.AddWithValue("address", Int32.Parse(textBox4.Text));
+                cmd1.Parameters.AddWithValue("address", textBox4.Text);
                 cmd1.Prepare();
 
                 cmd1.ExecuteNonQuery();
