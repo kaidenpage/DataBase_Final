@@ -21,7 +21,7 @@ namespace DBFinal
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Submitting vendor info attempt");
+            Console.WriteLine("Submitting New Item info attempt");
             //var qmanager = new QueryManager();
             //qmanager.Clientlogin(textBox1.Text, textBox2.Text);
 

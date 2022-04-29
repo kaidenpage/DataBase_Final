@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.ProjectsBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbluser
@@ -104,11 +105,21 @@
             this.ProjectsBtn.UseVisualStyleBackColor = true;
             this.ProjectsBtn.Click += new System.EventHandler(this.ProjectsBtn_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(342, 101);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Active projects";
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.ProjectsBtn);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -133,5 +144,6 @@
         private Label label2;
         private Button button3;
         private Button ProjectsBtn;
+        private Label label3;
     }
 }
