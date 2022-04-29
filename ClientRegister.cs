@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using System.Text.RegularExpressions;
 
 namespace DBFinal
 {
@@ -31,13 +32,18 @@ namespace DBFinal
 
             const string HOST = "localhost:5432";
             const string USER = "postgres";
-            const string PASS = "123411";
-            const string DB = "postgres";
+            const string PASS = "Youarestrong07!";
+            const string DB = "DB_Final";
             const string connectionString = $"Host={HOST};Username={USER};Password={PASS};Database={DB}";
             var conn = new NpgsqlConnection(connectionString);
 
             try
             {
+                //Check if email is valid
+                if (!IsValidEmail(textBox5.Text)) throw new Exception("Invalid Email");
+                //Check if phone is valid
+                if (!IsValidPhone(textBox4.Text)) throw new Exception("Invalid Phone");
+
                 conn.Open();
 
                 var sql_address = "INSERT INTO Address(street, city, state, zip) VALUES(@street, @city, @state, @zip)";
@@ -126,6 +132,33 @@ namespace DBFinal
 
         }
 
+        //helper function to check if the user email is valid
+        public bool IsValidEmail(string eMail)
+        {
+            bool Result = false;
+
+            try
+            {
+                var eMailValidator = new System.Net.Mail.MailAddress(eMail);
+
+                Result = (eMail.LastIndexOf(".") > eMail.LastIndexOf("@"));
+            }
+            catch
+            {
+                Result = false;
+            };
+
+            return Result;
+        }
+
+        public bool IsValidPhone(string phone)
+        {
+            string pat = @"^[1-9]\d{2}-\d{3}-\d{4}$";
+            bool isValid = false;
+            if(Regex.IsMatch(phone, pat, RegexOptions.IgnoreCase)) isValid = true;
+            return isValid;
+        }
+
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
 
@@ -145,5 +178,12 @@ namespace DBFinal
             ClientLogin back = new ClientLogin();
             back.Show();
         }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+ 
     }
 }
