@@ -33,5 +33,10 @@ namespace DBFinal
                 ProjectsFormGridView.Rows.Add(relations.ElementAt(i).ElementAt(0), relations.ElementAt(i).ElementAt(1));
             }
         }
+
+        private void ProjectsFormGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
